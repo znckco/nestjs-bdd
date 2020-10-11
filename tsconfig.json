@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "lib": ["ES2020", "ES2020.Promise"],
+    "target": "ES2018",
+    "module": "ESNext",
+    "moduleResolution": "node",
+
+    "strict": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "#/*": ["src/*"]
+    }
+  },
+  "include": ["src"]
+}

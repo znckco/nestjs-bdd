@@ -1,0 +1,57 @@
+name: CI
+
+on: [push, pull_request]
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  fix-style:
+    name: Fix code style
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.4.1
+        with:
+          access_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2-beta
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v1.2.0
+        with:
+          version: "5"
+          run_install: |
+            - args: [--frozen-lockfile, --silent]
+      # TODO: Move this to znckco/actions/lint repo.
+      - name: Lint
+        uses: ./.github/actions/lint
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+  unit-test:
+    name: Unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cancel Previous Runs
+        if: github.event_name == 'pull_request'
+        uses: styfle/cancel-workflow-action@0.4.1
+        with:
+          access_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2-beta
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v1.2.0
+        with:
+          version: "5"
+          run_install: |
+            - args: [--frozen-lockfile, --silent]
+      - name: Test
+        run: |
+          pnpm test
+          bash <(curl -s https://codecov.io/bash)

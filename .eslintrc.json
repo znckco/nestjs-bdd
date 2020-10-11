@@ -1,0 +1,33 @@
+{
+  "root": true,
+  "env": {
+    "node": true,
+    "jest": false
+  },
+  "overrides": [
+    {
+      "files": ["**/*.ts"],
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "sourceType": "module",
+        "project": "./tsconfig.json"
+      },
+      "plugins": ["@typescript-eslint"],
+      "extends": [
+        "standard-with-typescript",
+        "prettier",
+        "prettier/@typescript-eslint"
+      ]
+    },
+    {
+      "files": ["**/*.js"],
+      "extends": ["standard", "prettier"]
+    },
+    {
+      "files": ["**/*.spec.ts"],
+      "env": {
+        "jest": true
+      }
+    }
+  ]
+}
