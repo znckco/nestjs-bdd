@@ -1,7 +1,9 @@
 import { ParsedFeature } from "jest-cucumber/dist/src/models"
 import { InjectOptions, Response } from "light-my-request"
+import { TestingApp } from "./TestingApp"
 
 export interface TestingContext<T extends object = any> {
+  testing: TestingApp
   feature: ParsedFeature
 
   getRequest: () => InjectOptions
@@ -15,6 +17,7 @@ export interface TestingContext<T extends object = any> {
 }
 
 export function createContext<T extends object = any>(
+  testing: TestingApp,
   feature: ParsedFeature,
 ): TestingContext<T> {
   let request: InjectOptions = {}
@@ -22,6 +25,7 @@ export function createContext<T extends object = any>(
   const context: T = {} as any
 
   return {
+    testing,
     feature,
 
     getRequest: () => request,

@@ -2,7 +2,7 @@ import { createContext } from "./TestingContext"
 
 describe("createContext", () => {
   test("request", () => {
-    const context = createContext(null as any)
+    const context = createContext(null as any, null as any)
 
     const request = { method: "GET" } as const
 
@@ -11,7 +11,7 @@ describe("createContext", () => {
   })
 
   test("response", () => {
-    const context = createContext(null as any)
+    const context = createContext(null as any, null as any)
 
     const response = {} as any
     context.setResponse(response)
@@ -19,7 +19,7 @@ describe("createContext", () => {
   })
 
   test("state", () => {
-    const context = createContext(null as any)
+    const context = createContext(null as any, null as any)
 
     context.setState("foo", 1)
     context.setState("bar", "bar")

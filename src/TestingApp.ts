@@ -79,7 +79,7 @@ export class TestingApp {
       defineFeature(feature, (test) => {
         feature.scenarios.forEach((scenario) => {
           test(scenario.title, (keywords) => {
-            const context = createContext(feature)
+            const context = createContext(this, feature)
             scenario.steps.forEach((step) => {
               const keyword = keywords[step.keyword as keyof typeof keywords]
               keyword(step.stepText, () => {
