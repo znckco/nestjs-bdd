@@ -10,8 +10,8 @@ import { createContext } from "./TestingContext"
 import callsites from "callsites"
 
 export class TestingApp {
-  private app?: NestApplication
-  private container?: TestingModule
+  private _app?: NestApplication
+  private _container?: TestingModule
 
   constructor(
     private readonly AppModule: Type<any>,
@@ -21,6 +21,16 @@ export class TestingApp {
       createApp?: (testing: TestingModule) => NestApplication
     } = {},
   ) {}
+
+  get app(): NestApplication {
+    if (this._app == null) {
+      throw new Error(
+        "TestingApp not initialized. Make sure you call start() method in beforeAll() hook.",
+      )
+    } else {
+      return this._app
+    }
+  }
 
   async start(): Promise<void> {
     const builder = Test.createTestingModule({
@@ -43,14 +53,14 @@ export class TestingApp {
 
     container.get(MatcherRegistry).loadMatchers(this.matchers)
 
-    this.container = container
-    this.app = app
+    this._container = container
+    this._app = app
   }
 
   async stop(): Promise<void> {
     // istanbul ignore else
-    if (this.app != null) {
-      await this.app.close()
+    if (this._app != null) {
+      await this._app.close()
     }
   }
 
@@ -84,13 +94,13 @@ export class TestingApp {
               const keyword = keywords[step.keyword as keyof typeof keywords]
               keyword(step.stepText, () => {
                 // istanbul ignore if
-                if (this.container == null) {
+                if (this._container == null) {
                   throw new Error(
-                    "TestingApp not initialized. Make sure you call init() method in beforeAll() hook.",
+                    "TestingApp not initialized. Make sure you call start() method in beforeAll() hook.",
                   )
                 }
 
-                const [re, fn] = this.container
+                const [re, fn] = this._container
                   .get(MatcherRegistry)
                   .getMatcherFor(step.stepText)
 
