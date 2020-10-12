@@ -13,7 +13,7 @@
     "test": "jest --coverage",
     "build": "rollup -c --environment BUILD:production"
   },
-  "keywords": ["nestjs"],
+  "keywords": ["nestjs", "testing", "bdd", "jest", "jest-cucumber", "cucumber"],
   "author": "Rahul Kadyan <hey@znck.me> (https://znck.me)",
   "license": "MIT",
   "dependencies": {
