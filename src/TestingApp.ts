@@ -14,7 +14,7 @@ export class TestingApp {
   private _container?: TestingModule
 
   constructor(
-    private readonly AppModule: Type<any>,
+    private readonly AppModule: Type<any> | Array<Type<any>>,
     private readonly matchers: Array<Type<any>>,
     private readonly options: {
       beforeCompile?: (builder: TestingModuleBuilder) => void
@@ -34,7 +34,9 @@ export class TestingApp {
 
   async start(): Promise<void> {
     const builder = Test.createTestingModule({
-      imports: [this.AppModule],
+      imports: Array.isArray(this.AppModule)
+        ? this.AppModule
+        : [this.AppModule],
       providers: [MatcherRegistry, ...this.matchers],
     })
 
@@ -105,10 +107,10 @@ export class TestingApp {
                   .getMatcherFor(step.stepText)
 
                 if (typeof re === "string") {
-                  fn(context)
+                  return fn(context)
                 } else {
                   const args = re.exec(step.stepText)! // eslint-disable-line @typescript-eslint/no-non-null-assertion
-                  fn(context, ...args.slice(1))
+                  return fn(context, ...args.slice(1))
                 }
               })
             })
