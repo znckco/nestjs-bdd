@@ -1,10 +1,10 @@
 {
-  "name": "nestjs-module-template",
+  "name": "nestjs-bdd",
   "version": "0.0.0",
   "description": "",
-  "main": "dist/module-template.js",
-  "module": "dist/module-template.esm.js",
-  "types": "dist/module-template.d.ts",
+  "main": "dist/bdd.js",
+  "module": "dist/bdd.esm.js",
+  "types": "dist/bdd.d.ts",
   "files": ["dist"],
   "engines": {
     "node": ">=12.0"
@@ -19,12 +19,19 @@
   "dependencies": {
     "@nestjs/common": "^7.4.4",
     "@nestjs/core": "^7.4.4",
+    "@nestjs/testing": "^7.4.4",
+    "callsites": "^3.1.0",
+    "fast-glob": "^3.2.4",
+    "jest-cucumber": "^3.0.0",
+    "light-my-request": "^4.1.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.6.3"
   },
+  "peerDependencies": {
+    "jest": ">=26.0.0"
+  },
   "devDependencies": {
     "@nestjs/platform-express": "^7.4.4",
-    "@nestjs/testing": "^7.4.4",
     "@rollup/plugin-typescript": "^6.0.0",
     "@types/node": "^14.11.4",
     "@types/supertest": "^2.0.10",

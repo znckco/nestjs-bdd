@@ -3,12 +3,12 @@ import dts from "rollup-plugin-dts"
 import { typescriptPaths } from "rollup-plugin-typescript-paths"
 import { dependencies } from "./package.json"
 
-const external = ["rxjs/operators", ...Array.from(Object.keys(dependencies))]
+const external = ["path", ...Array.from(Object.keys(dependencies))]
 
 export default [
   {
     input: "src/index.ts",
-    output: { format: "cjs", file: "dist/module-template.js", sourcemap: true },
+    output: { format: "cjs", file: "dist/bdd.js", sourcemap: true },
     plugins: [typescript()],
     external,
   },
@@ -16,7 +16,7 @@ export default [
     input: "src/index.ts",
     output: {
       format: "esm",
-      file: "dist/module-template.esm.js",
+      file: "dist/bdd.esm.js",
       sourcemap: true,
     },
     plugins: [typescript()],
@@ -26,7 +26,7 @@ export default [
     input: "src/index.ts",
     output: {
       format: "esm",
-      file: "dist/module-template.d.ts",
+      file: "dist/bdd.d.ts",
       sourcemap: true,
     },
     plugins: [

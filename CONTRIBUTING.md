@@ -1,6 +1,6 @@
-# Contributing to NestJS Module Template
+# Contributing to NestJS BDD
 
-We would love for you to contribute to NestJS Module Template and help make it even better than it is
+We would love for you to contribute to NestJS BDD and help make it even better than it is
 today! As a contributor, here are the guidelines we would like you to follow:
 
 - [Code of Conduct](#coc)
@@ -40,21 +40,21 @@ Before you submit an issue, please search the issue tracker, maybe an issue for 
 We want to fix all the issues as soon as possible, but before fixing a bug we need to reproduce and confirm it. In order to reproduce bugs we will systematically ask you to provide a minimal reproduction scenario using a repository or [Gist](https://gist.github.com/). Having a live, reproducible scenario gives us wealth of important information without going back & forth to you with additional questions like:
 
 - version of NestJS used
-- version of NestJS Module Template used
+- version of NestJS BDD used
 - 3rd-party libraries and their versions
 - and most importantly - a use-case that fails
 
 Unfortunately, we are not able to investigate / fix bugs without a minimal reproduction, so if we don't hear back from you we are going to close an issue that don't have enough info to be reproduced.
 
-You can file new issues by filling out our [new issue form](https://github.com/znckco/nestjs-module-template/issues/new).
+You can file new issues by filling out our [new issue form](https://github.com/znckco/nestjs-bdd/issues/new).
 
 ### <a name="submit-pr"></a> Submitting a Pull Request (PR)
 
 Before you submit your Pull Request (PR) consider the following guidelines:
 
-1. Search [GitHub](https://github.com/znckco/nestjs-module-template/pulls) for an open or closed PR
+1. Search [GitHub](https://github.com/znckco/nestjs-bdd/pulls) for an open or closed PR
    that relates to your submission. You don't want to duplicate effort.
-1. Fork the znckco/nestjs-module-template repo.
+1. Fork the znckco/nestjs-bdd repo.
 1. Make your changes in a new git branch:
 
    ```shell
@@ -72,7 +72,7 @@ Before you submit your Pull Request (PR) consider the following guidelines:
    git push origin my-fix-branch
    ```
 
-1. In GitHub, send a pull request to `nestjs-module-template:master`.
+1. In GitHub, send a pull request to `nestjs-bdd:master`.
 
 - If we suggest changes then:
 
