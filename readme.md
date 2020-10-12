@@ -13,7 +13,7 @@
 
 ## Description
 
-Behaviour driven testing for NestJS using jest and jest-cucumber.
+Behaviour driven development for NestJS using jest and jest-cucumber.
 
 ## Installation
 
