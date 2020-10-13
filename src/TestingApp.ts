@@ -90,7 +90,12 @@ export class TestingApp {
     features.forEach((feature) => {
       defineFeature(feature, (test) => {
         feature.scenarios.forEach((scenario) => {
-          test(scenario.title, (keywords) => {
+          const testFn = scenario.tags.includes("@skip")
+            ? test.skip
+            : scenario.tags.includes("@only")
+            ? test.only
+            : test
+          testFn(scenario.title, (keywords) => {
             const context = createContext(this, feature)
             scenario.steps.forEach((step) => {
               const keyword = keywords[step.keyword as keyof typeof keywords]
@@ -110,7 +115,14 @@ export class TestingApp {
                   return fn(context)
                 } else {
                   const args = re.exec(step.stepText)! // eslint-disable-line @typescript-eslint/no-non-null-assertion
-                  return fn(context, ...args.slice(1))
+                  return fn(
+                    context,
+                    ...args.slice(1),
+                    args[0],
+                    step,
+                    scenario,
+                    feature,
+                  )
                 }
               })
             })
