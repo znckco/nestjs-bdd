@@ -1,9 +1,13 @@
 import typescript from "@rollup/plugin-typescript"
 import dts from "rollup-plugin-dts"
 import { typescriptPaths } from "rollup-plugin-typescript-paths"
-import { dependencies } from "./package.json"
+import { dependencies, peerDependencies } from "./package.json"
 
-const external = ["path", ...Array.from(Object.keys(dependencies))]
+const external = [
+  "path",
+  ...Array.from(Object.keys(dependencies)),
+  ...Array.from(Object.keys(peerDependencies)),
+]
 
 export default [
   {
