@@ -17,9 +17,6 @@
   "author": "Rahul Kadyan <hey@znck.me> (https://znck.me)",
   "license": "MIT",
   "dependencies": {
-    "@nestjs/common": "^7.4.4",
-    "@nestjs/core": "^7.4.4",
-    "@nestjs/testing": "^7.4.4",
     "callsites": "^3.1.0",
     "fast-glob": "^3.2.4",
     "jest-cucumber": "^3.0.0",
@@ -28,9 +25,15 @@
     "rxjs": "^6.6.3"
   },
   "peerDependencies": {
-    "jest": ">=26.0.0"
+    "jest": "^26.0.0",
+    "@nestjs/common": "^7.0.0",
+    "@nestjs/core": "^7.0.0",
+    "@nestjs/testing": "^7.0.0"
   },
   "devDependencies": {
+    "@nestjs/common": "7.6.15",
+    "@nestjs/core": "7.6.15",
+    "@nestjs/testing": "7.6.15",
     "@nestjs/platform-express": "^7.4.4",
     "@rollup/plugin-typescript": "^6.0.0",
     "@types/node": "^14.11.4",
