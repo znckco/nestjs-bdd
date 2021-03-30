@@ -66,7 +66,7 @@ export class TestingApp {
     }
   }
 
-  findInDir(featureDir: string): void {
+  findInDir(featureDir: string, setupFn?: () => void): void {
     if (featureDir.startsWith(".")) {
       const callSite = callsites()[1]
       let fileName: string | null
@@ -79,16 +79,21 @@ export class TestingApp {
 
     this.findInFiles(
       glob.sync("**/*.feature", { cwd: featureDir, absolute: true }),
+      setupFn,
     )
   }
 
-  findInFiles(fileNames: string[]): void {
-    this.forFeatures(fileNames.map((fileName) => loadFeature(fileName)))
+  findInFiles(fileNames: string[], setupFn?: () => void): void {
+    this.forFeatures(
+      fileNames.map((fileName) => loadFeature(fileName)),
+      setupFn,
+    )
   }
 
-  forFeatures(features: ParsedFeature[]): void {
+  forFeatures(features: ParsedFeature[], setupFn?: () => void): void {
     features.forEach((feature) => {
       defineFeature(feature, (test) => {
+        setupFn?.()
         feature.scenarios.forEach((scenario) => {
           const testFn = scenario.tags.includes("@skip")
             ? test.skip
