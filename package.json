@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@nestjs/common": "7.6.15",
-    "@nestjs/core": "7.6.15",
+    "@nestjs/core": "9.0.5",
     "@nestjs/testing": "7.6.15",
     "@nestjs/platform-express": "^7.4.4",
     "@rollup/plugin-typescript": "^6.0.0",
